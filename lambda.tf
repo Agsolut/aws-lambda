@@ -21,6 +21,8 @@ resource "aws_lambda_function" "this" {
 
   role = aws_iam_role.this.arn
 
+  layers = var.layers
+
   dynamic "environment" {
     for_each = length(keys(local.environment)) > 0 ? [local.environment] : []
     content {
